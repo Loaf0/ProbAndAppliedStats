@@ -7,7 +7,7 @@ public class StatsLibTester {
 
         StatsLibrary functions = new StatsLibrary();
 
-        double[] doubleValues = {46, 69, 32, 60, 52, 41, 46};
+        double[] doubleValues = {46, 69, 32, 60, 52, 41, 70, 52};
 
         System.out.println("Standard Deviation : " + functions.standardDeviation(doubleValues));
         System.out.println("              Mean : " + functions.getMean(doubleValues));

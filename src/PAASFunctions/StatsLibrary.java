@@ -6,6 +6,7 @@ package PAASFunctions;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class StatsLibrary {
@@ -40,12 +41,14 @@ public class StatsLibrary {
     }
 
     public double getMedian(double[] input) {
+        double[] sorted = Arrays.stream(input).sorted().toArray();
+        System.out.println(Arrays.toString(sorted));
         double median = 0;
-        double middle = (double) input.length / 2;
-        if (input.length % 2 == 0)
-            median = (input[(int) middle] + input[(int) middle + 1]) / 2;
+        int middle = (int) Math.floor((double) sorted.length / 2);
+        if (sorted.length % 2 == 0)
+            median = (sorted[middle] + sorted[middle - 1]) / 2;
         else
-            median = input[(int) Math.ceil(middle)];
+            median = sorted[middle];
         return median;
     }
 
