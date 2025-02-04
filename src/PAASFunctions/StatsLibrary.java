@@ -83,4 +83,13 @@ public class StatsLibrary {
 
         return Math.sqrt(variance);
     }
+
+    public double factorial(int x){
+        double output = x;
+        for(int i = x-1; i > 0; i--){
+            output *= i;
+        }
+        return output;
+    }
+
 }

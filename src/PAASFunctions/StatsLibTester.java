@@ -13,6 +13,7 @@ public class StatsLibTester {
         System.out.println("              Mean : " + functions.getMean(doubleValues));
         System.out.println("              Mode : " + Arrays.toString(functions.getMode(doubleValues)));
         System.out.println("            Median : " + functions.getMedian(doubleValues));
+        System.out.println("         Factorial : " + functions.factorial(23));
 
     }
 }
