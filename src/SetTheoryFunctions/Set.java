@@ -1,8 +1,5 @@
 package SetTheoryFunctions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Set {
 
     private int pointer;
@@ -11,13 +8,14 @@ public class Set {
 
 
     public Set(){
+        pointer = 0;
         size = 0;
         items = new String[10];
     }
 
     public boolean add(String input){
         if (!contains(input)) {
-            if(pointer < size)
+            if(pointer < items.length)
             {
                 items[pointer] = input;
                 pointer++;
@@ -40,6 +38,31 @@ public class Set {
         return false; // or false if is already in
     }
 
+    public Set union(Set a){
+        Set union = new Set();
+        union.addAll(items);
+        union.addAll(a.getArray());
+
+        return union;
+    }
+
+    public Set intersection(Set a){
+        Set intersect = new Set();
+        for(String item : items)
+            if(a.contains(item))
+                intersect.add(item);
+
+        return intersect;
+    }
+
+    public boolean isSuperSet(Set a){
+        for(String item : items){
+            if(!a.contains(item))
+                return false;
+        }
+        return true;
+    }
+
     public void addAll(String[] input){
         for(String value : input){
             add(value);
@@ -53,8 +76,9 @@ public class Set {
 
     public boolean contains(String input){
         for (var item : items){
-            if (item.equals(input))
-                return true;
+            if(item != null)
+                if (item.equals(input))
+                    return true;
         }
         return false; // if is in set
     }
@@ -69,6 +93,7 @@ public class Set {
                 for(int j = i; i < items.length; i++){
                     items[i] = items[i+1];
                 }
+                size--;
                 return true;
             }
         }
@@ -77,6 +102,19 @@ public class Set {
 
     public int size(){
         return size;
+    }
+
+    public void printSet(){
+        System.out.print("[");
+        for(int i = 0; i < size-1; i++){
+            System.out.print(items[i] + ", ");
+        }
+        System.out.print(items[size - 1]);
+        System.out.print("]");
+    }
+
+    public String[] getArray(){
+        return items;
     }
 
 }
