@@ -9,11 +9,11 @@ public class StatsLibTester {
 
         double[] doubleValues = {46, 69, 32, 60, 52, 41, 70, 52};
 
-//      System.out.println("Standard Deviation : " + functions.standardDeviation(doubleValues));
-//      System.out.println("              Mean : " + functions.getMean(doubleValues));
-//      System.out.println("              Mode : " + Arrays.toString(functions.getMode(doubleValues)));
-//      System.out.println("            Median : " + functions.getMedian(doubleValues));
-//      System.out.println("         Factorial : " + functions.bigFactorial(6));
+        System.out.println("Standard Deviation : " + functions.standardDeviation(doubleValues));
+        System.out.println("              Mean : " + functions.getMean(doubleValues));
+        System.out.println("              Mode : " + Arrays.toString(functions.getMode(doubleValues)));
+        System.out.println("            Median : " + functions.getMedian(doubleValues));
+        System.out.println("         Factorial : " + functions.bigFactorial(6));
         System.out.println("      Permutations : " + functions.permutation(8, 3));
         System.out.println("      Combinations : " + functions.combination(9, 5));
 
