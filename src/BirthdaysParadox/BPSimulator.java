@@ -1,7 +1,7 @@
 package BirthdaysParadox;
 
 /*
- *  @description Birthday Paradox Calculator
+ *  @description Monte Carlo Birthday Paradox Calculator
  *  @author Tyler Snyder
  */
 
@@ -18,8 +18,9 @@ public class BPSimulator {
             if (instance(people, possibleDays))
                 duplicateBirthdays++;
         }
-        double chance =  (double) duplicateBirthdays / (double) iterations;
-        System.out.println("Probability of " + people + " People Having the Same Birthday : " + chance);
+        double chance =  (double) duplicateBirthdays / (double) iterations * 100;
+        System.out.printf("Probability of %s People Not Having the Same Birthday : %.4f %% \n", people, 100.0 - chance);
+        System.out.printf("    Probability of %s People Having the Same Birthday : %.4f %%", people, chance);
     }
 
     public boolean instance(int people, int days){
