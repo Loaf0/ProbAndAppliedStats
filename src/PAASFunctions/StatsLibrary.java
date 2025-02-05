@@ -101,12 +101,16 @@ public class StatsLibrary {
         return output;
     }
 
-    public double combination(){
-        return 0.0;
+    public BigInteger combination(int n, int r){
+        BigInteger num = bigFactorial(n);
+        BigInteger den = bigFactorial(r).multiply(bigFactorial(n-r));
+        return num.divide(den);
     }
 
-    public double permutation(){
-        return 0.0;
+    public BigInteger permutation(int n, int r){
+        BigInteger num = bigFactorial(n);
+        BigInteger den = bigFactorial(n-r);
+        return num.divide(den);
     }
 
 }
