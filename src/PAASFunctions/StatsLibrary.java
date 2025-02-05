@@ -5,6 +5,7 @@ package PAASFunctions;
  *  @author Tyler Snyder
  */
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class StatsLibrary {
             int highestCount = countMap.get(largestValue);
             if (count > highestCount) {
                 largestValue = cur;
-                tiedModes = new ArrayList<Double>();
+                tiedModes = new ArrayList<>();
                 tiedModes.add(largestValue);
             }
             countMap.put(cur, count);
@@ -43,7 +44,7 @@ public class StatsLibrary {
     public double getMedian(double[] input) {
         double[] sorted = Arrays.stream(input).sorted().toArray();
         System.out.println(Arrays.toString(sorted));
-        double median = 0;
+        double median;
         int middle = (int) Math.floor((double) sorted.length / 2);
         if (sorted.length % 2 == 0)
             median = (sorted[middle] + sorted[middle - 1]) / 2;
@@ -71,7 +72,7 @@ public class StatsLibrary {
 
         double mean = sum / input.length;
 
-        double deviation = 0;
+        double deviation;
 
         sum = 0;
         for (double v : input) {
@@ -90,6 +91,22 @@ public class StatsLibrary {
             output *= i;
         }
         return output;
+    }
+
+    public BigInteger bigFactorial(int x){
+        BigInteger output = BigInteger.valueOf(x);
+        for(int i = x-1; i > 0; i--){
+            output = output.multiply(BigInteger.valueOf(i));
+        }
+        return output;
+    }
+
+    public double combination(){
+        return 0.0;
+    }
+
+    public double permutation(){
+        return 0.0;
     }
 
 }
