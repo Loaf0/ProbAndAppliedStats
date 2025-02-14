@@ -4,8 +4,8 @@ public class DealOrNoDeal {
 
     private Door[] doors;
 
-    public DealOrNoDeal(){
-        doors = new Door[3];
+    public DealOrNoDeal(int options){
+        doors = new Door[options];
         generateCorrectDoor();
     }
 
@@ -14,7 +14,7 @@ public class DealOrNoDeal {
             doors[i] = new Door();
         }
 
-        int random = (int) (Math.random() * 3);
+        int random = (int) (Math.random() * doors.length);
 
         doors[random].setCorrect(true);
     }

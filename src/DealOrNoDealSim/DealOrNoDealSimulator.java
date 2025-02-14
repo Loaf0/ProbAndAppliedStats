@@ -1,5 +1,7 @@
 package DealOrNoDealSim;
 
+import java.util.Scanner;
+
 public class DealOrNoDealSimulator {
 
     private int iterations;
@@ -11,8 +13,17 @@ public class DealOrNoDealSimulator {
     }
 
     public void run(){
+        Scanner input = new Scanner(System.in);
+        int options = 0;
+
+        System.out.print("Input Number of Doors : ");
+
+        while(options <= 0){
+            options = input.nextInt();
+        }
+
         for(int i = 0; i < iterations; i++){
-            DealOrNoDeal problem = new DealOrNoDeal();
+            DealOrNoDeal problem = new DealOrNoDeal(options);
             problem.generateCorrectDoor();
             if(problem.pickRandomDoor(true)){ //swapping
                 correctSwaps += 1;
@@ -20,7 +31,7 @@ public class DealOrNoDealSimulator {
         }
 
         for(int i = 0; i < iterations; i++){
-            DealOrNoDeal problem = new DealOrNoDeal();
+            DealOrNoDeal problem = new DealOrNoDeal(options);
             problem.generateCorrectDoor();
             if(problem.pickRandomDoor(false)){ //swapping
                 correctNoSwaps += 1;
@@ -30,8 +41,8 @@ public class DealOrNoDealSimulator {
         double correctSwapPercent = (double) correctSwaps / iterations;
         double correctNoSwapPercent = (double) correctNoSwaps / iterations;
 
-        System.out.println("Chance when not swapping : " + correctSwapPercent);
-        System.out.println("    Chance when swapping : " + correctNoSwapPercent);
+        System.out.println("Chance when not swapping : " + correctNoSwapPercent);
+        System.out.println("    Chance when swapping : " + correctSwapPercent);
 
     }
 
