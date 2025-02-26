@@ -113,4 +113,8 @@ public class StatsLibrary {
         return num.divide(den);
     }
 
+    public double binomialDistribution(int numOfTrials, int desiredAmount, double probOfSuccess){
+        return combination(numOfTrials, desiredAmount).intValue() * Math.pow(probOfSuccess, desiredAmount) * Math.pow(1 - probOfSuccess, numOfTrials - desiredAmount);
+    }
+
 }

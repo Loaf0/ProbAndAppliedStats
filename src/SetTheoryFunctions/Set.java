@@ -13,6 +13,13 @@ public class Set {
         items = new String[10];
     }
 
+    public Set(String[] arr){
+        pointer = 0;
+        size = 0;
+        items = new String[10];
+        addAll(arr);
+    }
+
     public boolean add(String input){
         if (!contains(input)) {
             if(pointer < items.length)
@@ -35,7 +42,7 @@ public class Set {
             size++;
             return true;
         }
-        return false; // or false if is already in
+        return false;
     }
 
     public Set union(Set a){
@@ -51,22 +58,24 @@ public class Set {
         for(String item : items)
             if(a.contains(item))
                 intersect.add(item);
-
         return intersect;
     }
 
     public boolean isSuperSet(Set a){
-        for(String item : items){
-            if(!a.contains(item))
+        return a.isSubSet(new Set(items));
+    }
+
+    public boolean isSubSet(Set a){
+        for(String item : items)
+            if (item != null && !a.contains(item))
                 return false;
-        }
         return true;
     }
 
     public void addAll(String[] input){
-        for(String value : input){
-            add(value);
-        }
+        for(String value : input)
+            if (value != null)
+                add(value);
     }
 
     public void clear(){
@@ -75,12 +84,10 @@ public class Set {
     }
 
     public boolean contains(String input){
-        for (var item : items){
-            if(item != null)
-                if (item.equals(input))
-                    return true;
-        }
-        return false; // if is in set
+        for (var item : items)
+            if(item != null && item.equals(input))
+                return true;
+        return false;
     }
 
     public boolean isEmpty(){
@@ -110,7 +117,7 @@ public class Set {
             System.out.print(items[i] + ", ");
         }
         System.out.print(items[size - 1]);
-        System.out.print("]");
+        System.out.print("]\n");
     }
 
     public String[] getArray(){
