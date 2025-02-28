@@ -117,4 +117,8 @@ public class StatsLibrary {
         return combination(numOfTrials, desiredAmount).intValue() * Math.pow(probOfSuccess, desiredAmount) * Math.pow(1 - probOfSuccess, numOfTrials - desiredAmount);
     }
 
+    public double geometricDistribution(double probOfSuccess, double iterations){
+        return Math.pow(probOfSuccess, (iterations - 1)) * (1 - probOfSuccess);
+    }
+
 }

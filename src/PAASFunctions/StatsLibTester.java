@@ -9,7 +9,8 @@ public class StatsLibTester {
 
         double[] doubleValues = {.904,.929,.901};
 
-        System.out.println(functions.binomialDistribution(10, 4, .15));
+        System.out.println(functions.geometricDistribution(.2, 3));
+//        System.out.println(functions.binomialDistribution(10, 4, .15));
 //        System.out.println("Standard Deviation : " + functions.standardDeviation(doubleValues));
 //        System.out.println("              Mean : " + functions.getMean(doubleValues));
 //        System.out.println("              Mode : " + Arrays.toString(functions.getMode(doubleValues)));
