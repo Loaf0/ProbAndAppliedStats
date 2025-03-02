@@ -43,7 +43,6 @@ public class StatsLibrary {
 
     public double getMedian(double[] input) {
         double[] sorted = Arrays.stream(input).sorted().toArray();
-        System.out.println(Arrays.toString(sorted));
         double median;
         int middle = (int) Math.floor((double) sorted.length / 2);
         if (sorted.length % 2 == 0)
@@ -59,6 +58,28 @@ public class StatsLibrary {
             total += i;
 
         return total / input.length;
+    }
+
+    public double varience(double[] input){
+        if (input.length <= 1) // Handle 1 and 0
+            return 0;
+
+        double sum = 0;
+        for (double value : input) {
+            sum += value;
+        }
+
+        double mean = sum / input.length;
+
+        double deviation;
+
+        sum = 0;
+        for (double v : input) {
+            deviation = Math.pow(v - mean, 2);
+            sum += deviation;
+        }
+
+        return sum / (input.length - 1);
     }
 
     public double standardDeviation(double[] input) {
@@ -119,5 +140,15 @@ public class StatsLibrary {
 
     public double geometricDistribution(double probOfSuccess, double iterations){
         return Math.pow(probOfSuccess, (iterations - 1)) * (1 - probOfSuccess);
+    }
+
+    public double conditionalProbability(double probAB, double probA, double probB){
+        return probAB * probA / probB;
+    }
+
+    public boolean checkIndependence(double probA, double probB, double probAAndB){
+        double productOfProbabilities = probA * probB;
+
+        return Math.abs(probAAndB - productOfProbabilities) < 0.000001; // about equal
     }
 }
