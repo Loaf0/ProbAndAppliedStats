@@ -2,6 +2,11 @@ package DealOrNoDealSim;
 
 import java.util.Scanner;
 
+/*
+ * @description MonteCarlo Simulator for the Deal or No Deal Doors Problem
+ * @author Tyler Snyder
+ */
+
 public class DealOrNoDealSimulator {
 
     private int iterations;

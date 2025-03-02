@@ -1,5 +1,10 @@
 package SetTheoryFunctions;
 
+/*
+ * @description Custom Implementation of Java's Set
+ * @author Tyler Snyder
+ */
+
 public class Set {
 
     private int pointer;
@@ -96,8 +101,8 @@ public class Set {
 
     public boolean remove(String input){
         for (int i = 0; i < items.length; i++){
-            if (items[i].equals(input)){
-                for(int j = i; i < items.length; i++){
+            if (items[i] != null && items[i].equals(input)){
+                for(int j = i; i < items.length - 1; i++){
                     items[i] = items[i+1];
                 }
                 size--;

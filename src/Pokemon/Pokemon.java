@@ -1,5 +1,10 @@
 package Pokemon;
 
+/*
+ * @description Simple Pokemon superclass for Battle Simulator
+ * @author Tyler Snyder
+ */
+
 public class Pokemon {
 
     private String name;

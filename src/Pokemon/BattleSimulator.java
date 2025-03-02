@@ -1,5 +1,10 @@
 package Pokemon;
 
+/*
+ * @description Simple Battle Simulator for pokemon class
+ * @author Tyler Snyder
+ */
+
 public class BattleSimulator {
 
     public void battle(Pokemon p1, Pokemon p2){

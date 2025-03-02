@@ -120,5 +120,4 @@ public class StatsLibrary {
     public double geometricDistribution(double probOfSuccess, double iterations){
         return Math.pow(probOfSuccess, (iterations - 1)) * (1 - probOfSuccess);
     }
-
 }
