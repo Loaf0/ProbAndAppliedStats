@@ -142,6 +142,10 @@ public class StatsLibrary {
         return Math.pow(probOfSuccess, (iterations - 1)) * (1 - probOfSuccess);
     }
 
+    public double hypergeometricDistribution(int N, int n, int k, int x){
+        return combination(k, x).multiply(combination(N-k, n-x)).divide(combination(N,n)).doubleValue();
+    }
+
     public double conditionalProbability(double probAB, double probA, double probB){
         return probAB * probA / probB;
     }
