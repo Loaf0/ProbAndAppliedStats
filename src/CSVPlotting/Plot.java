@@ -1,5 +1,7 @@
 package CSVPlotting;
 
+import CSVUtil.FileWriter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -20,21 +22,14 @@ public class Plot {
         }
     }
 
-    public void exportPlot() {
-        String path =  "../Exports/" + "plot.csv";
-        File f = new File(path);
-        f.getParentFile().mkdirs();
-
-        try (PrintWriter pw = new PrintWriter(f)){
-            StringBuilder output = new StringBuilder();
-            output.append("X Value, Y Value\n");
-            for (Vector v : points) {
-                output.append(v.getX()).append(", ");
-                output.append(v.getY()).append(", \n");
-            }
-            pw.write(output.toString());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+    public void exportPlot(String path) throws FileNotFoundException {
+        StringBuilder output = new StringBuilder();
+        output.append("X Value, Y Value\n");
+        for (Vector v : points) {
+            output.append(v.getX()).append(", ");
+            output.append(v.getY()).append(", \n");
         }
+
+        new FileWriter().write(path, output.toString());
     }
 }
