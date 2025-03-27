@@ -2,6 +2,11 @@ package Cards;
 
 import java.util.ArrayList;
 
+/*
+ *  @description Custom Deck class to act as simulated deck of cards
+ *  @author Tyler Snyder
+ */
+
 public class Deck {
     private ArrayList<Card> cards;
 

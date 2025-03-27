@@ -3,6 +3,11 @@ package CSVUtil;
 import java.util.ArrayList;
 import java.util.Map;
 
+/*
+ *  @description Custom data holder that allows the reading of lines from a CSV
+ *  @author Tyler Snyder
+ */
+
 public class RowData {
 
     Map<String, Integer> columns;

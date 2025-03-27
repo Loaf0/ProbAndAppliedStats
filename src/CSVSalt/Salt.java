@@ -3,9 +3,12 @@ package CSVSalt;
 import CSVUtil.CSVReader;
 import CSVUtil.FileWriter;
 import CSVUtil.RowData;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+
+/*
+ *  @description reads the output of the CSV Plotting package and salts the data
+ *  @author Tyler Snyder
+ */
 
 public class Salt{
 
@@ -19,7 +22,6 @@ public class Salt{
     public void saltDataFromCSV(String path, double randomRange) throws FileNotFoundException {
         CSVReader csv = new CSVReader();
         csv.readFile(path);
-
         while(csv.hasNext()){
             RowData rowdata = csv.next();
             double valueX = rowdata.getDec("X Value");
@@ -28,7 +30,6 @@ public class Salt{
             // salt values
             double max = randomRange / 2;
             double min = -randomRange / 2;
-//            valueY = valueY * (Math.random() * (max - min) + min);
             valueY = valueY + (Math.random() * (max - min) + min);
             sb.append(valueX).append(", ").append(valueY).append("\n");
         }

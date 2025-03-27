@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/*
+ *  @description CSVReader class the allows the reading of data based on the column header for easier csv management
+ *  @author Tyler Snyder
+ */
+
 public class CSVReader {
 
     Map<String, Integer> columns;

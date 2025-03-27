@@ -4,12 +4,13 @@ import CSVPlotting.Vector;
 import CSVUtil.CSVReader;
 import CSVUtil.FileWriter;
 import CSVUtil.RowData;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+/*
+ *  @description reads the output of the CSV Salting package and smooths the data to become more readable
+ *  @author Tyler Snyder
+ */
 
 public class Smooth {
 
