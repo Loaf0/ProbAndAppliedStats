@@ -28,10 +28,8 @@ public class Smooth {
         csv.readFile(path);
         while(csv.hasNext()){
             RowData rowData = csv.next();
-
             double valueX = rowData.getDec("X Value");
             double valueY = rowData.getDec("Y Value");
-
             points.add(new Vector(valueX, valueY));
         }
     }

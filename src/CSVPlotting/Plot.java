@@ -16,7 +16,7 @@ public class Plot {
     }
 
     public void savePoints(){
-        for(int x = 0; x < 50; x++){
+        for(int x = 0; x < 100; x++){
             double y = Math.pow(x, 2) * .5;
             points.add(new Vector((double)x, y));
         }
