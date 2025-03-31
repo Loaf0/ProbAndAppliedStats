@@ -3,7 +3,7 @@
   windowSize = [8, 5];
 
 
-% graph initilial function
+% graph initial function
 for i = 1:50
   x = [x; i];
   y = [y; i ^ 1.5 * .5];
