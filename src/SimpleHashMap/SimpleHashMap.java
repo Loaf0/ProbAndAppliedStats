@@ -17,7 +17,7 @@ public class SimpleHashMap {
     }
 
     public boolean get(String key){
-
+        return true;
     }
 
     public int simpleHash(String input){
