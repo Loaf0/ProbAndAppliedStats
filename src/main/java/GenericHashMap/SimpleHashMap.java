@@ -1,5 +1,4 @@
-package SimpleHashMap;
-
+package GenericHashMap;
 
 import java.util.LinkedList;
 
@@ -8,7 +7,7 @@ public class SimpleHashMap {
     private LinkedList<KeyValuePair>[] keys;
 
     public SimpleHashMap(){
-        keys = new LinkedList[10];
+        keys = new LinkedList[50];
     }
 
     public boolean add(String key, String value){
@@ -21,6 +20,7 @@ public class SimpleHashMap {
     }
 
     public int simpleHash(String input){
+        // eventually change to MD5 or other hashing
         return input.length() % keys.length - 1; // subtract 1 for 0 indexing
     }
 
@@ -30,7 +30,7 @@ public class SimpleHashMap {
     }
 
     public void resize(){
-        return;
+        //newKeys =
     }
 
 }

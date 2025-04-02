@@ -1,6 +1,6 @@
-package SimpleLinkedList;
+package GenericLinkedList;
 
-public class Node<E> {
+public class Node<E extends Comparable<E>> {
 
     private E data;
     private Node<E> nextNode;
@@ -22,19 +22,7 @@ public class Node<E> {
         }
     }
 
-    public E getNextData() {
-        return nextNode.getData();
-    }
-
-    public void setNextData(E newData) {
-        nextNode.setData(newData);
-    }
-
-    public void setNextNode(Node<E> newNextNode) {
-        nextNode.setNode(newNextNode);
-    }
-
-    public void setNode(Node<E> newNextNode) {
+    public void setNext(Node<E> newNextNode) {
         nextNode = newNextNode;
     }
 
