@@ -1,5 +1,10 @@
 package GenericLinkedList;
 
+/*
+ * @description Custom data holder for custom linked list implementation
+ * @author Tyler Snyder
+ */
+
 public class Node<E extends Comparable<E>> {
 
     private E data;

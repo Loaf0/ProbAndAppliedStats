@@ -1,5 +1,10 @@
 package GenericHashMap;
 
+/*
+ * @description Custom data holder for SimpleHashMap
+ * @author Tyler Snyder
+ */
+
 public class KeyValuePair<X extends Comparable<X>, Y> implements Comparable<KeyValuePair<X, Y>> {
 
     private X key;

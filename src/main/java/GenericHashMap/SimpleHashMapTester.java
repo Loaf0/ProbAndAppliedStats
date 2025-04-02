@@ -7,6 +7,7 @@ public class SimpleHashMapTester {
     public static void main(String[] args){
 
         SimpleHashMap<String, String> shm = new SimpleHashMap<>();
+
         shm.add("Apple", "Fruit");
         shm.add("Tree", "Plant");
 
@@ -21,8 +22,11 @@ public class SimpleHashMapTester {
         shmInt.add(p1, "A");
         shmInt.add(p2, "B");
 
-        System.out.println(shmInt.get(p1));
+        System.out.println(shmInt.contains(p1));
 
+        System.out.println("Value removed? " + shmInt.remove(p1));
+
+        System.out.println(shmInt.contains(p1));
     }
 
 }
