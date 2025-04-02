@@ -30,7 +30,11 @@ public class Node<E extends Comparable<E>> {
         data = newData;
     }
 
-    public Node<E> getNextNode() {
+    public Node<E> getNext() {
         return nextNode;
+    }
+
+    public boolean hasNext(){
+        return nextNode != null;
     }
 }

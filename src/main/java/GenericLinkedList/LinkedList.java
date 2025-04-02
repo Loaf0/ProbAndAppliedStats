@@ -18,7 +18,14 @@ public class LinkedList<E extends Comparable<E>> {
 
     }
 
-    public E getData(int index) {
+    public E getData(E e) {
+        Node<E> curr = head;
+        while (curr.hasNext()){
+            // loop through linked list and compare values to find key pair with the same key
+            if (curr.getData().compareTo(e) == 0){
+                return curr.getData();
+            }
+        }
         return null;
     }
 
