@@ -52,7 +52,7 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
     /*
      * get a value associated with a key or a default value
      * @param X the key used to search for its pair
-     * @param X the default value to be used in place of null
+     * @param Y the default value to be used in place of null
      * @return Y the associated value
      */
     public Y getOrDefault(X key, Y defaultValue){

@@ -5,7 +5,6 @@ import CSVPlotting.Vector;
 public class SimpleHashMapTester {
 
     public static void main(String[] args){
-
         SimpleHashMap<String, String> shm = new SimpleHashMap<>();
 
         shm.put("Apple", "Fruit");
