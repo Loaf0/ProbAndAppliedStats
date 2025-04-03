@@ -8,10 +8,15 @@ public class SimpleHashMapTester {
 
         SimpleHashMap<String, String> shm = new SimpleHashMap<>();
 
-        shm.add("Apple", "Fruit");
-        shm.add("Tree", "Plant");
+        shm.put("Apple", "Fruit");
+        shm.put("Tree", "Plant");
 
         System.out.println(shm.get("Apple"));
+
+        shm.resize(70);
+
+        System.out.println(shm.get("Apple"));
+        System.out.println(shm.get("Tree"));
 
 
         SimpleHashMap<Vector, String> shmInt = new SimpleHashMap<>();
@@ -19,8 +24,8 @@ public class SimpleHashMapTester {
         Vector p1 = new Vector(1.005, 6.044);
         Vector p2 = new Vector(1.04, 6.64);
 
-        shmInt.add(p1, "A");
-        shmInt.add(p2, "B");
+        shmInt.put(p1, "A");
+        shmInt.put(p2, "B");
 
         System.out.println(shmInt.contains(p1));
 

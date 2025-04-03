@@ -6,6 +6,7 @@ package GenericHashMap;
  */
 
 import GenericLinkedList.LinkedList;
+import GenericLinkedList.Node;
 
 public class SimpleHashMap<X extends Comparable<X>, Y> {
 
@@ -15,12 +16,16 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
         keys = new LinkedList[50];
     }
 
+    public SimpleHashMap(int x){
+        keys = new LinkedList[x];
+    }
+
     /*
-     * add key and value to HashMap
+     * put key and value to HashMap
      * @param X the key to be added
      * @param Y the value to be added
      */
-    public void add(X key, Y value){
+    public void put(X key, Y value){
         // get the hashed location and add node
         int hashLoc = simpleHash(key.toString());
         if (keys[hashLoc] == null)
@@ -82,11 +87,21 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
      * @param int the new size to use
      */
     public void resize(int x){
-        //LinkedList<KeyValuePair<X, Y>>[] newKeys = new LinkedList[x];
+        SimpleHashMap<X, Y> newKeys = new SimpleHashMap<X, Y>(x);
 
-        //migrate and rehash all keys  to new linked list one by one else hashes will be wrong
+        for(LinkedList<KeyValuePair<X, Y>> ll : keys){
+            if(ll == null || ll.getHead() == null)
+                continue;
 
-        //keys = newKeys;
+            Node<KeyValuePair<X, Y>> currNode = ll.getHead();
+            newKeys.put(currNode.getData().getKey(), currNode.getData().getValue());
+
+            while(currNode.hasNext()){
+                currNode = currNode.getNext();
+                newKeys.put(currNode.getData().getKey(), currNode.getData().getValue());
+            }
+        }
+        keys = newKeys.getKeys();
     }
 
     /*
@@ -98,6 +113,10 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
         LinkedList<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key.toString())];
         KeyValuePair<X, Y> target = new KeyValuePair<>(key, null);
         return hashLocation.remove(target);
+    }
+
+    public LinkedList<KeyValuePair<X, Y>>[] getKeys(){
+        return keys;
     }
 
 }
