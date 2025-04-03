@@ -31,7 +31,7 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
         if (keys[hashLoc] == null)
             keys[hashLoc] = new LinkedList<>();
 
-        keys[hashLoc].add(new KeyValuePair<X, Y>(key, value));
+        keys[hashLoc].add(new KeyValuePair<>(key, value));
     }
 
     /*
@@ -87,7 +87,7 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
      * @param int the new size to use
      */
     public void resize(int x){
-        SimpleHashMap<X, Y> newKeys = new SimpleHashMap<X, Y>(x);
+        SimpleHashMap<X, Y> newKeys = new SimpleHashMap<>(x);
 
         for(LinkedList<KeyValuePair<X, Y>> ll : keys){
             if(ll == null || ll.getHead() == null)
