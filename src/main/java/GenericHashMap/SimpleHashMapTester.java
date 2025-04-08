@@ -7,10 +7,11 @@ public class SimpleHashMapTester {
     public static void main(String[] args){
         SimpleHashMap<String, String> shm = new SimpleHashMap<>();
 
-        shm.put("Apple", "Fruit");
+        shm.put("Tree", "Fruit");
         shm.put("Tree", "Plant");
+        shm.put("Teer", "PlantTeer");
 
-        System.out.println(shm.get("Apple"));
+        System.out.println(shm.get("Teer"));
 
         shm.resize(70);
 

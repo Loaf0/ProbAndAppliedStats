@@ -38,6 +38,17 @@ public class SimpleHashMapTest {
     }
 
     @Test
+    public void testCollisions() {
+        SimpleHashMap<String, String> shm = new SimpleHashMap<>();
+
+        shm.put("Apple", "Red");
+        shm.put("elppA", "deR");
+
+        assertEquals("Red", shm.get("Apple"));
+        assertEquals("deR", shm.get("elppA"));
+    }
+
+    @Test
     public void testRemove() {
         SimpleHashMap<String, String> shm = new SimpleHashMap<>();
 

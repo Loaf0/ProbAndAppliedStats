@@ -20,8 +20,10 @@ public class LinkedList<E extends Comparable<E>> {
      * @param E value to be added into the linked list
      */
     public void add(E newData) {
-        if (head == null)
+        if (head == null){
             head = new Node<>(newData);
+            return;
+        }
 
         Node<E> newHead = new Node<>(newData);
         newHead.setNext(head);
@@ -48,10 +50,7 @@ public class LinkedList<E extends Comparable<E>> {
         Node<E> curr = head;
         while (curr.getNext() != null) {
             if (curr.getNext().getData().compareTo(target) == 0) {
-                if(curr.getNext().getNext() != null)
-                    curr.setNext(curr.getNext().getNext());
-                else
-                    curr.setNext(null);
+                curr.setNext(curr.getNext().getNext());
                 return true;
             }
             curr = curr.getNext();
@@ -67,11 +66,12 @@ public class LinkedList<E extends Comparable<E>> {
      */
     public E getData(E e) {
         Node<E> curr = head;
-        while (curr.hasNext()){
+        while (curr != null){
             // loop through linked list and compare values to find key pair with the same key
             if (curr.getData().compareTo(e) == 0){
                 return curr.getData();
             }
+            curr = curr.getNext();
         }
         return null;
     }
