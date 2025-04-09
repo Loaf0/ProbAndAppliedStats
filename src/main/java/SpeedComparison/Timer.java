@@ -1,5 +1,10 @@
 package SpeedComparison;
 
+/*
+ * @description Class made to emulate a stopwatch
+ * @author Tyler Snyder
+ */
+
 public class Timer {
 
     private long time;

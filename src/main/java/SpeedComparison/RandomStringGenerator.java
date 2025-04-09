@@ -1,5 +1,10 @@
 package SpeedComparison;
 
+/*
+ * @description Class that generates a random string of characters from a given range
+ * @author Tyler Snyder
+ */
+
 import java.util.ArrayList;
 
 public class RandomStringGenerator {

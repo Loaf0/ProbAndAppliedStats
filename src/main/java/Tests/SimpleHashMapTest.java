@@ -39,7 +39,7 @@ public class SimpleHashMapTest {
 
     @Test
     public void testCollisions() {
-        SimpleHashMap<String, String> shm = new SimpleHashMap<>();
+        SimpleHashMap<String, String> shm = new SimpleHashMap<>(1);
 
         shm.put("Apple", "Red");
         shm.put("elppA", "deR");

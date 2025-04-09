@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class HashmapComparison {
     public static void main(String[] args){
-        int testIterations = 100000;
+        int testIterations = 1000000;
 
         Timer timer = new Timer();
         Map<String, String> jMap = new HashMap<>();
@@ -35,8 +35,8 @@ public class HashmapComparison {
         timer.reset();
         timer.start();
         for(int i = 0; i < testIterations; i++){
-            tMap.put(keys[i], values[i]);
-            tMap.get(keys[i]);
+            jMap.put(keys[i], values[i]);
+            jMap.get(keys[i]);
         }
         timer.stop();
         System.out.println("Java's map took " + timer.getTime() + "ms!");

@@ -66,6 +66,16 @@ public class SimpleHashMap<X extends Comparable<X>, Y> {
      * @return int hashed value
      */
     private int simpleHash(String input){
+        // faster hashing by getting memory location of object as int
+        return Math.abs(System.identityHashCode(input) % keys.length);
+    }
+
+    /*
+     * private helper function to hash a string into an int
+     * @param String value to be hashed
+     * @return int hashed value
+     */
+    private int simplerHash(String input){
         int sum = 0;
         for (int i = 0; i < input.length(); i++) {
             sum += input.charAt(i);
