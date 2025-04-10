@@ -1,7 +1,6 @@
 package Tests;
 
 import GenericTree.Tree;
-import SetTheoryFunctions.Set;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

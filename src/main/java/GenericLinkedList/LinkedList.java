@@ -92,7 +92,7 @@ public class LinkedList<E extends Comparable<E>> {
      * clear all values from LinkedList
      */
     public void clear() {
-        head = new Node<E>(null);
+        head = new Node<>(null);
         size = 0;
     }
 
