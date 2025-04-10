@@ -5,14 +5,14 @@ package GenericLinkedList;
  * @author Tyler Snyder
  */
 
-import GenericHashMap.KeyValuePair;
-
 public class LinkedList<E extends Comparable<E>> {
 
     private Node<E> head;
+    private int size;
 
     public LinkedList() {
         head = null;
+        size = 0;
     }
 
     /*
@@ -28,6 +28,7 @@ public class LinkedList<E extends Comparable<E>> {
         Node<E> newHead = new Node<>(newData);
         newHead.setNext(head);
         head = newHead;
+        size++;
     }
 
     /*
@@ -43,6 +44,7 @@ public class LinkedList<E extends Comparable<E>> {
         // check if head is target
         if (head.getData().compareTo(target) == 0) {
             head = head.getNext();
+            size--;
             return true;
         }
 
@@ -51,6 +53,7 @@ public class LinkedList<E extends Comparable<E>> {
         while (curr.getNext() != null) {
             if (curr.getNext().getData().compareTo(target) == 0) {
                 curr.setNext(curr.getNext().getNext());
+                size--;
                 return true;
             }
             curr = curr.getNext();
@@ -90,9 +93,14 @@ public class LinkedList<E extends Comparable<E>> {
      */
     public void clear() {
         head = new Node<E>(null);
+        size = 0;
     }
 
     public Node<E> getHead() {
         return head;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

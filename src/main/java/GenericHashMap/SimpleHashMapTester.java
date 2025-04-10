@@ -17,7 +17,6 @@ public class SimpleHashMapTester {
         System.out.println(shm.get("deer"));
         System.out.println(shm.get("reed"));
 
-
         SimpleHashMap<Vector, String> shmInt = new SimpleHashMap<>();
 
         Vector p1 = new Vector(1.005, 6.044);

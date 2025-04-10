@@ -1,30 +1,33 @@
 package GenericHashMap;
 
 /*
- * @description Custom Implementation of Java's HashMap class
+ * @description Stronger version of my HashMap in attempts to keep up with Javas hashmap computation speeds
  * @author Tyler Snyder
  */
 
 import GenericLinkedList.LinkedList;
-import GenericLinkedList.Node;
+import GenericTree.Node;
+import GenericTree.Tree;
 
-public class SimpleHashMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y> {
+import java.util.ArrayList;
 
-    private LinkedList<KeyValuePair<X, Y>>[] keys;
+public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y> {
+
+    private Tree<KeyValuePair<X, Y>>[] keys;
     private final double resizeFactor;
 
-    public SimpleHashMap(){
-        keys = new LinkedList[50];
-        resizeFactor = 0.1;
+    public SimpleHashTreeMap(){
+        keys = new Tree[50];
+        resizeFactor = 0.3;
     }
 
-    public SimpleHashMap(int size){
-        keys = new LinkedList[size];
-        resizeFactor = 0.1;
+    public SimpleHashTreeMap(int size){
+        keys = new Tree[size];
+        resizeFactor = 0.3;
     }
 
-    public SimpleHashMap(int size, double resizeFactor){
-        keys = new LinkedList[size];
+    public SimpleHashTreeMap(int size, double resizeFactor){
+        keys = new Tree[size];
         this.resizeFactor = resizeFactor;
     }
 
@@ -37,19 +40,20 @@ public class SimpleHashMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y
         // get the hashed location and add node
         int hashLoc = simpleHash(key);
         if (keys[hashLoc] == null)
-            keys[hashLoc] = new LinkedList<>();
+            keys[hashLoc] = new Tree<>();
 
         KeyValuePair<X, Y> target = new KeyValuePair<>(key, value);
-        KeyValuePair<X, Y> existing = keys[hashLoc].getData(target);
+        KeyValuePair<X, Y> existing = keys[hashLoc].get(target);
 
         // if exists update instead of adding additional nodes to prevent bloat
         if(existing != null)
             existing.setValue(value);
         else
-            keys[hashLoc].add(target);
+            keys[hashLoc].get(target);
 
         // auto resize logic
         if(keys[hashLoc].getSize() >= keys.length * resizeFactor){
+            // resize logic not implemented yet
             resize(keys.length * 2);
         }
     }
@@ -60,12 +64,12 @@ public class SimpleHashMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y
      * @return Y the associated value
      */
     public Y get(X key){
-        LinkedList<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key)];
+        Tree<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key)];
         if (hashLocation == null)
             return null;
         // search for target and return it or null
         KeyValuePair<X, Y> target = new KeyValuePair<>(key, null);
-        target = hashLocation.getData(target);
+        target = hashLocation.get(target);
         return target != null ? target.getValue() : null;
     }
 
@@ -91,19 +95,6 @@ public class SimpleHashMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y
     }
 
     /*
-     * private helper function to hash a string into an int
-     * @param String value to be hashed
-     * @return int hashed value
-     */
-    private int simplerHash(String input){
-        int sum = 0;
-        for (int i = 0; i < input.length(); i++) {
-            sum += input.charAt(i);
-        }
-        return sum % keys.length;
-    }
-
-    /*
      * check if a value is in the HashMap
      * @param X the key used to search for its pair
      * @return boolean weather key exists in map
@@ -117,21 +108,26 @@ public class SimpleHashMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y
      * @param int the new size to use
      */
     public void resize(int newSize){
+        //sort and grab median when resizing?
+        //resizing must balance the array so they are not added in worst case O(n)
         if(newSize < 0)
             return;
 
-        SimpleHashMap<X, Y> newKeys = new SimpleHashMap<>(newSize);
+        SimpleHashTreeMap<X, Y> newKeys = new SimpleHashTreeMap<>(newSize);
 
-        for(LinkedList<KeyValuePair<X, Y>> ll : keys){
-            if(ll == null || ll.getHead() == null)
+        for(Tree<KeyValuePair<X, Y>> tree : keys){
+            if(tree == null || tree.getHead() == null)
                 continue;
 
-            Node<KeyValuePair<X, Y>> currNode = ll.getHead();
-            newKeys.put(currNode.getData().getKey(), currNode.getData().getValue());
+            ArrayList<Node<KeyValuePair<X, Y>>> nodes = tree.nodesToArrayList();
 
-            while(currNode.hasNext()){
-                currNode = currNode.getNext();
-                newKeys.put(currNode.getData().getKey(), currNode.getData().getValue());
+            while (!nodes.isEmpty()) {
+                // so elements are not added in worst O(n)
+                int index = (int) (Math.random() * nodes.size());
+                Node<KeyValuePair<X, Y>> node = nodes.get(index);
+                nodes.remove(index);
+                KeyValuePair<X, Y> k = node.getData();
+                newKeys.put(k.getKey(), k.getValue());
             }
         }
         keys = newKeys.getKeys();
@@ -143,12 +139,13 @@ public class SimpleHashMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y
      * @return boolean to see key was deleted from map
      */
     public boolean remove(X key){
-        LinkedList<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key)];
-        KeyValuePair<X, Y> target = new KeyValuePair<>(key, null);
-        return hashLocation.remove(target);
+//        LinkedList<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key)];
+//        KeyValuePair<X, Y> target = new KeyValuePair<>(key, null);
+//        return hashLocation.remove(target);
+        return false;
     }
 
-    public LinkedList<KeyValuePair<X, Y>>[] getKeys(){
+    public Tree<KeyValuePair<X, Y>>[] getKeys(){
         return keys;
     }
 
