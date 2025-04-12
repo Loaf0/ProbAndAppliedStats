@@ -1,7 +1,7 @@
 package GenericLinkedList;
 
 /*
- * @description Custom Implementation of Java's Linked List
+ * @description Custom Implementation of A tree
  * @author Tyler Snyder
  */
 

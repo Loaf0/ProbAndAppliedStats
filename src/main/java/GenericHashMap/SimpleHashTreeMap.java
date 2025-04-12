@@ -6,27 +6,27 @@ package GenericHashMap;
  */
 
 import GenericTree.Node;
-import GenericTree.Tree;
+import GenericTree.SimpleTree;
 
 import java.util.ArrayList;
 
 public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y> {
 
-    private Tree<KeyValuePair<X, Y>>[] keys;
+    private SimpleTree<KeyValuePair<X, Y>>[] keys;
     private final double resizeFactor;
 
     public SimpleHashTreeMap(){
-        keys = new Tree[50];
-        resizeFactor = 0.3;
+        keys = new SimpleTree[50];
+        resizeFactor = 0.25;
     }
 
     public SimpleHashTreeMap(int size){
-        keys = new Tree[size];
-        resizeFactor = 0.3;
+        keys = new SimpleTree[size];
+        resizeFactor = 0.25;
     }
 
     public SimpleHashTreeMap(int size, double resizeFactor){
-        keys = new Tree[size];
+        keys = new SimpleTree[size];
         this.resizeFactor = resizeFactor;
     }
 
@@ -39,7 +39,7 @@ public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<
         // get the hashed location and add node
         int hashLoc = simpleHash(key);
         if (keys[hashLoc] == null)
-            keys[hashLoc] = new Tree<>();
+            keys[hashLoc] = new SimpleTree<>();
 
         KeyValuePair<X, Y> target = new KeyValuePair<>(key, value);
         KeyValuePair<X, Y> existing = keys[hashLoc].get(target);
@@ -48,7 +48,7 @@ public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<
         if(existing != null)
             existing.setValue(value);
         else
-            keys[hashLoc].get(target);
+            keys[hashLoc].insert(target);
 
         // auto resize logic
         if(keys[hashLoc].getSize() >= keys.length * resizeFactor){
@@ -63,7 +63,7 @@ public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<
      * @return Y the associated value
      */
     public Y get(X key){
-        Tree<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key)];
+        SimpleTree<KeyValuePair<X, Y>> hashLocation = keys[simpleHash(key)];
         if (hashLocation == null)
             return null;
         // search for target and return it or null
@@ -114,11 +114,11 @@ public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<
 
         SimpleHashTreeMap<X, Y> newKeys = new SimpleHashTreeMap<>(newSize);
 
-        for(Tree<KeyValuePair<X, Y>> tree : keys){
-            if(tree == null || tree.getHead() == null)
+        for(SimpleTree<KeyValuePair<X, Y>> simpleTree : keys){
+            if(simpleTree == null || simpleTree.getHead() == null)
                 continue;
 
-            ArrayList<Node<KeyValuePair<X, Y>>> nodes = tree.nodesToArrayList();
+            ArrayList<Node<KeyValuePair<X, Y>>> nodes = simpleTree.nodesToArrayList();
 
             while (!nodes.isEmpty()) {
                 // so elements are not added in worst O(n)
@@ -144,7 +144,7 @@ public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<
         return false;
     }
 
-    public Tree<KeyValuePair<X, Y>>[] getKeys(){
+    public SimpleTree<KeyValuePair<X, Y>>[] getKeys(){
         return keys;
     }
 

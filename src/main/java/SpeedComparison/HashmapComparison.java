@@ -14,17 +14,18 @@ public class HashmapComparison {
         int[] iterations = {100, 1000, 10000, 100000, 1000000};
 
         StringBuilder output = new StringBuilder();
-        output.append("Iterations, SimpleHashMap Time (ms), SimpleTreeMap Time (ms), JavaHashMap Time (ms) \n");
+        //output.append("Iterations, SimpleBalancedTreeMap Time (ms), JavaHashMap Time (ms) \n");
+        output.append("Iterations, SimpleHashMap Time (ms), SimpleTreeMap Time (ms) \n");
 
         for (int iteration : iterations){
             System.out.println("Starting Tests with " + iteration + " iterations.");
             Timer timer = new Timer();
             long hashMapTime = 0;
-            long treeMapTime = 0;
-            long jMapTime = 0;
+            long treeMapTime;
+            long jMapTime;
 
             // set both maps to the same capacity as to keep timing fair
-            SimpleMap<String, String> tMap = new SimpleHashMap<>(50);
+            SimpleMap<String, String> hMap = new SimpleHashMap<>(50);
             SimpleMap<String, String> treeMap = new SimpleHashTreeMap<>(50);
             Map<String, String> jMap = new HashMap<>(50);
 
@@ -48,10 +49,10 @@ public class HashmapComparison {
             // my map
             timer.start();
             for(int i = 0; i < iteration; i++){
-                tMap.put(keys[i], values[i]);
+                hMap.put(keys[i], values[i]);
             }
             for(int i = 0; i < iteration; i++){
-                tMap.get(shuffledKeys[i]);
+                hMap.get(shuffledKeys[i]);
             }
             timer.stop();
             hashMapTime = timer.getTime();
@@ -60,10 +61,10 @@ public class HashmapComparison {
             // treemap
             timer.start();
             for(int i = 0; i < iteration; i++){
-                tMap.put(keys[i], values[i]);
+                treeMap.put(keys[i], values[i]);
             }
             for(int i = 0; i < iteration; i++){
-                tMap.get(shuffledKeys[i]);
+                treeMap.get(shuffledKeys[i]);
             }
             timer.stop();
             treeMapTime = timer.getTime();
@@ -80,7 +81,7 @@ public class HashmapComparison {
             timer.stop();
             jMapTime = timer.getTime();
 
-            output.append(iteration).append(", ").append(hashMapTime).append(", ").append(treeMapTime).append(", ").append(jMapTime).append("\n");
+            output.append(iteration).append(", ").append(hashMapTime).append(", ").append(treeMapTime).append("\n");
         }
 
         new FileWriter().write("../Exports/HashMapSpeeds.csv", output.toString());
