@@ -5,19 +5,19 @@ import CSVPlotting.Vector;
 public class SimpleHashMapTester {
 
     public static void main(String[] args){
-        SimpleHashMap<String, String> shm = new SimpleHashMap<>();
+        SimpleHybridHashMap<String, String> shm = new SimpleHybridHashMap<>();
 
         shm.put("deer", "Animal");
         shm.put("reed", "Plant");
 
         System.out.println(shm.get("reed"));
 
-        shm.resize(70);
+        shm.resize();
 
         System.out.println(shm.get("deer"));
         System.out.println(shm.get("reed"));
 
-        SimpleHashMap<Vector, String> shmInt = new SimpleHashMap<>();
+        SimpleHybridHashMap<Vector, String> shmInt = new SimpleHybridHashMap<>();
 
         Vector p1 = new Vector(1.005, 6.044);
         Vector p2 = new Vector(1.04, 6.64);

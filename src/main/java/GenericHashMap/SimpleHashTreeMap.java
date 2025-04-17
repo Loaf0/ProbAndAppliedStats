@@ -88,7 +88,7 @@ public class SimpleHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<
      * @param String value to be hashed
      * @return int hashed value
      */
-    private int simpleHash(X x){
+    public int simpleHash(X x){
         // faster hashing by getting memory location of object as int
         return Math.abs(x.hashCode() % keys.length);
     }

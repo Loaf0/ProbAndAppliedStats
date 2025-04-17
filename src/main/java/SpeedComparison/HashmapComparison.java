@@ -1,9 +1,7 @@
 package SpeedComparison;
 
 import CSVUtil.FileWriter;
-import GenericHashMap.SimpleHashMap;
-import GenericHashMap.SimpleHashTreeMap;
-import GenericHashMap.SimpleMap;
+import GenericHashMap.*;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -15,7 +13,7 @@ public class HashmapComparison {
 
         StringBuilder output = new StringBuilder();
         //output.append("Iterations, SimpleBalancedTreeMap Time (ms), JavaHashMap Time (ms) \n");
-        output.append("Iterations, SimpleHashMap Time (ms), SimpleTreeMap Time (ms) \n");
+        output.append("Iterations, SimpleHybridMap Time (ms), SimpleBalancedTreeMap Time (ms), Java HashMap Time (ms) \n");
 
         for (int iteration : iterations){
             System.out.println("Starting Tests with " + iteration + " iterations.");
@@ -25,8 +23,8 @@ public class HashmapComparison {
             long jMapTime;
 
             // set both maps to the same capacity as to keep timing fair
-            SimpleMap<String, String> hMap = new SimpleHashMap<>(50);
-            SimpleMap<String, String> treeMap = new SimpleHashTreeMap<>(50);
+            SimpleMap<String, String> hMap = new SimpleHybridHashMap<>(50);
+            SimpleMap<String, String> treeMap = new SimpleBalancedHashTreeMap<>(50);
             Map<String, String> jMap = new HashMap<>(50);
 
 
@@ -81,7 +79,7 @@ public class HashmapComparison {
             timer.stop();
             jMapTime = timer.getTime();
 
-            output.append(iteration).append(", ").append(hashMapTime).append(", ").append(treeMapTime).append("\n");
+            output.append(iteration).append(", ").append(hashMapTime).append(", ").append(treeMapTime).append(", ").append(jMapTime).append("\n");
         }
 
         new FileWriter().write("../Exports/HashMapSpeeds.csv", output.toString());

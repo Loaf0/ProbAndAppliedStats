@@ -7,7 +7,6 @@ package GenericHashMap;
 
 import GenericTree.BalancedNode;
 import GenericTree.BalancedTree;
-
 import java.util.Arrays;
 
 public class SimpleBalancedHashTreeMap<X extends Comparable<X>, Y> implements SimpleMap<X, Y> {
@@ -18,12 +17,12 @@ public class SimpleBalancedHashTreeMap<X extends Comparable<X>, Y> implements Si
 
     public SimpleBalancedHashTreeMap(){
         keys = new BalancedTree[50];
-        resizeFactor = 0.5;
+        resizeFactor = 0.4;
     }
 
     public SimpleBalancedHashTreeMap(int size){
         keys = new BalancedTree[size];
-        resizeFactor = 0.5;
+        resizeFactor = 0.4;
     }
 
     public SimpleBalancedHashTreeMap(int size, double resizeFactor){
@@ -89,8 +88,12 @@ public class SimpleBalancedHashTreeMap<X extends Comparable<X>, Y> implements Si
      * @param String value to be hashed
      * @return int hashed value
      */
-    private int simpleHash(X x){
+    public int simpleHash(X x){
         // faster hashing by getting memory location of object as int
+        return simpleHash(x, keys.length);
+    }
+
+    private int simpleHash(X x, int size) {
         return Math.abs(x.hashCode() % keys.length);
     }
 
@@ -114,13 +117,13 @@ public class SimpleBalancedHashTreeMap<X extends Comparable<X>, Y> implements Si
 
         Arrays.stream(oldKeys).parallel().filter(tree -> tree != null).forEach(tree -> {
             for (BalancedNode<KeyValuePair<X, Y>> kv : tree.nodesToArrayList()) {
-                int newHash = Math.abs(kv.getData().getKey().hashCode() % newSize);
+                int newHash = simpleHash(kv.getData().getKey(), newSize);
 
                 synchronized (keys) {
                     if (keys[newHash] == null) {
                         keys[newHash] = new BalancedTree<>();
                     }
-                    keys[newHash].insertOrUpdate(kv.getData());
+                    keys[newHash].insert(kv.getData());
                 }
             }
         });
