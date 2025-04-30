@@ -35,13 +35,13 @@ public class BalancedTree<E extends Comparable<E>> implements Tree<E> {
     public E get(E data) {
         BalancedNode<E> current = head;
         while (current != null) {
-            int cmp = data.compareTo(current.getData());
-            if (cmp == 0) {
+            int comparison = data.compareTo(current.getData());
+            if (comparison == 0) {
                 return current.getData();
-            } else if (cmp < 0) {
-                current = current.getLeftNode();
+            } else if (comparison < 0) {
+                current = (BalancedNode<E>) current.getLeftNode();
             } else {
-                current = current.getRightNode();
+                current = (BalancedNode<E>) current.getRightNode();
             }
         }
         return null;

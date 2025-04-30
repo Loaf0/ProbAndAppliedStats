@@ -10,6 +10,12 @@ import java.io.PrintWriter;
  */
 
 public class FileWriter {
+
+    /*
+     * generates a file and directory to a given path
+     * @param path the path for the file to be created
+     * @param content a string containing the desired content of the file
+     */
     public void write(String path, String content) throws FileNotFoundException {
         File f = new File(path);
         f.getParentFile().mkdirs();

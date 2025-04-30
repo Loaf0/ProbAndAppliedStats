@@ -12,7 +12,7 @@ public class SimpleHashMapTester {
 
         System.out.println(shm.get("reed"));
 
-        shm.resize();
+        //shm.resize();
 
         System.out.println(shm.get("deer"));
         System.out.println(shm.get("reed"));

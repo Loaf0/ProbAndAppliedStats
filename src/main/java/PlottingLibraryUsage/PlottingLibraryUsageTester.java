@@ -15,6 +15,6 @@ public class PlottingLibraryUsageTester {
         graph.smoothData(8);
         graph.plotPoints("Smoothed");
 
-        graph.createWindow("Graph");
+        graph.createWindow("Plotting, Salting, Smoothing");
     }
 }

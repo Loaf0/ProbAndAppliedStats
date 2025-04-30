@@ -1,39 +1,27 @@
 package GenericTree;
 
-public class BalancedNode<E extends Comparable<E>> {
+/*
+ * @description subclass of node that implements custom height checking to be used in self balancing tree
+ * @author Tyler Snyder
+ */
 
-    private E data;
-    private BalancedNode<E> leftNode;
-    private BalancedNode<E> rightNode;
+public class BalancedNode<E extends Comparable<E>> extends Node<E> {
+
     private int height;
 
     public BalancedNode(E newData) {
-        data = newData;
+        super(newData);
         height = 1;
     }
 
-    public E getData() {
-        return data;
-    }
-
-    public void setData(E data) {
-        this.data = data;
-    }
-
+    @Override
     public BalancedNode<E> getLeftNode() {
-        return leftNode;
+        return (BalancedNode<E>) super.getLeftNode();
     }
 
-    public void setLeftNode(BalancedNode<E> leftNode) {
-        this.leftNode = leftNode;
-    }
-
+    @Override
     public BalancedNode<E> getRightNode() {
-        return rightNode;
-    }
-
-    public void setRightNode(BalancedNode<E> rightNode) {
-        this.rightNode = rightNode;
+        return (BalancedNode<E>) super.getRightNode();
     }
 
     public int getHeight() {

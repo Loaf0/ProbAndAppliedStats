@@ -36,7 +36,6 @@ public class Salt{
     }
 
     public void exportSaltedData(String path) throws FileNotFoundException {
-        FileWriter fw = new FileWriter();
-        fw.write(path, sb.toString());
+        new FileWriter().write(path, sb.toString());
     }
 }

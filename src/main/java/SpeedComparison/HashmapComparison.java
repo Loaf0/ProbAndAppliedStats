@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class HashmapComparison {
     public static void main(String[] args) throws FileNotFoundException {
-        int[] iterations = {100, 1000, 10000, 100000, 1000000};
+        int[] iterations = {100, 1000, 10000, 100000, 1000000, 10000000};
 
         StringBuilder output = new StringBuilder();
         //output.append("Iterations, SimpleBalancedTreeMap Time (ms), JavaHashMap Time (ms) \n");
@@ -18,14 +18,14 @@ public class HashmapComparison {
         for (int iteration : iterations){
             System.out.println("Starting Tests with " + iteration + " iterations.");
             Timer timer = new Timer();
-            long hashMapTime = 0;
+            long hashMapTime;
             long treeMapTime;
             long jMapTime;
 
             // set both maps to the same capacity as to keep timing fair
-            SimpleMap<String, String> hMap = new SimpleHybridHashMap<>(50);
-            SimpleMap<String, String> treeMap = new SimpleBalancedHashTreeMap<>(50);
-            Map<String, String> jMap = new HashMap<>(50);
+            SimpleMap<String, String> hMap = new SimpleHybridHashMap<>();
+            SimpleMap<String, String> treeMap = new SimpleRBHashTreeMap<>();
+            Map<String, String> jMap = new HashMap<>();
 
 
             RandomStringGenerator rsg = new RandomStringGenerator();

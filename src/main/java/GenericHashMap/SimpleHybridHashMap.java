@@ -8,30 +8,30 @@ public class SimpleHybridHashMap<X extends Comparable<X>, Y> implements SimpleMa
     private SimpleMap<X, Y> currentMap;
     private final double treeResizeFactor;
     private final double linkedResizeFactor;
-    private int items;
     private final int swapToTreeMap;
+    private int items;
 
     public SimpleHybridHashMap() {
         // manual resize from this class
         items = 0;
         treeResizeFactor = 0.5;
-        linkedResizeFactor = 0.5;
+        linkedResizeFactor = 0.35;
         this.currentMap = new SimpleHashMap<>(100, linkedResizeFactor);
-        this.swapToTreeMap = 1000;
+        this.swapToTreeMap = 8190;
     }
 
     public SimpleHybridHashMap(int size) {
         items = 0;
         treeResizeFactor = 0.5;
-        linkedResizeFactor = 0.5;
+        linkedResizeFactor = 0.35;
         this.currentMap = new SimpleHashMap<>(size, linkedResizeFactor);
-        this.swapToTreeMap = 1000;
+        this.swapToTreeMap = 8190;
     }
 
     public SimpleHybridHashMap(int size, int swapToTreeMap) {
         items = 0;
         treeResizeFactor = 0.5;
-        linkedResizeFactor = 0.5;
+        linkedResizeFactor = 0.35;
         this.currentMap = new SimpleHashMap<>(size, linkedResizeFactor);
         this.swapToTreeMap = swapToTreeMap;
     }
@@ -39,7 +39,9 @@ public class SimpleHybridHashMap<X extends Comparable<X>, Y> implements SimpleMa
     @Override
     public void put(X key, Y value) {
         items++;
-        resize();
+        if(items > swapToTreeMap){
+            swapToTreeMap();
+        }
         currentMap.put(key, value);
     }
 
@@ -69,17 +71,11 @@ public class SimpleHybridHashMap<X extends Comparable<X>, Y> implements SimpleMa
         return currentMap.simpleHash(x);
     }
 
-    public void resize(){
-        if(items >= swapToTreeMap && !(currentMap instanceof SimpleBalancedHashTreeMap<X,Y>)){
-            swapToTreeMap();
-        }
-    }
-
     private void swapToTreeMap(){
-        if (currentMap instanceof SimpleHashMap<X,Y>) {
+        if(currentMap instanceof SimpleHashMap<X,Y>){
             SimpleHashMap<X, Y> oldHashMap = (SimpleHashMap<X, Y>) currentMap;
 
-            SimpleBalancedHashTreeMap<X, Y> treeMap = new SimpleBalancedHashTreeMap<>(oldHashMap.getKeys().length, treeResizeFactor);
+            SimpleRBHashTreeMap<X, Y> treeMap = new SimpleRBHashTreeMap<>(oldHashMap.getKeys().length * 2, treeResizeFactor);
 
             LinkedList<KeyValuePair<X, Y>>[] lists = oldHashMap.getKeys();
             for (LinkedList<KeyValuePair<X, Y>> list : lists) {

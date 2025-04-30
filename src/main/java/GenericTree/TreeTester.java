@@ -2,7 +2,7 @@ package GenericTree;
 
 public class TreeTester {
     public static void main(String[] args){
-        Tree<String> tree = new BalancedTree<>();
+        Tree<String> tree = new RBTree<>();
 
         tree.insert("hello!");
         tree.insert("test!");

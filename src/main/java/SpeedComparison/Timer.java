@@ -11,15 +11,24 @@ public class Timer {
     private long startTime;
     private long stopTime;
 
+    /*
+     * Start the stopwatch
+     */
     public void start(){
         startTime = System.currentTimeMillis();
     }
 
+    /*
+     * pause the timer on the stopwatch
+     */
     public void stop(){
         stopTime = System.currentTimeMillis();
         time +=  stopTime - startTime;
     }
 
+    /*
+     * reset the stopwatch timer
+     */
     public void reset(){
         time = 0;
         startTime = 0;
