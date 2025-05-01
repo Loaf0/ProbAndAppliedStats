@@ -16,10 +16,20 @@ Reads and Exports salted data from CSV
 Reads and exports smoothed data from CSV
 ### CSV Util
 Read and collect data from CSV using the table headers
+### PlottingLibraryUsage
+Plotting Salting Smoothing Using Apache and JFreeCharts
 ### DealOrNoDealSim
 Monte carlo simulation for the deal or no deal doors problem 
 ### PAASFunctions
 Collection of Probability and Statistics Functions
+### SpeedComparison
+Speed and memory comparisons of my hashmaps
+### GenericTree
+Collection of tree implementations
+### GenericLinkedList
+Linked List implementations
+### GenericHashMap
+Collection of HashMap Implementations
 ### Pokemon
 Simple Pokemon Battle Simulation
 ### PokemonTCG
