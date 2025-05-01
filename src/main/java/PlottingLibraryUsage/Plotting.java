@@ -24,16 +24,26 @@ public class Plotting {
         points = new ArrayList<>();
     }
 
+    /*
+     * Generate points to populate the graph
+     */
     public void generatePoints(){
         for (int i = 0; i < 100; i++) {
             points.add(new Vector(i, Math.pow(i, 3) - 5 * i));
         }
     }
 
+    /*
+     * move the data from points to the graphing library
+     */
     public void plotPoints(){
         plotPoints("Series");
     }
 
+    /*
+     * move the data from points to the graphing library
+     * @param str the name of the series to be added
+     */
     public void plotPoints(String str){
         XYSeries series = new XYSeries(str);
         for (int i = 0; i < 100; i++) {
@@ -42,6 +52,9 @@ public class Plotting {
         dataset.addSeries(series);
     }
 
+    /*
+     * Randomize the points in the series
+     */
     public void saltData(){
         JDKRandomGenerator rng = new JDKRandomGenerator();
         GaussianRandomGenerator rg = new GaussianRandomGenerator(rng);
@@ -52,10 +65,17 @@ public class Plotting {
         }
     }
 
+    /*
+     * Average each data point based on its neighbors
+     */
     public void smoothData(){
         smoothData(5);
     }
 
+    /*
+     * Average each data point based on its neighbors
+     * @param windowSize the size of the moving average window
+     */
     public void smoothData(int windowSize) {
         DescriptiveStatistics ds = new DescriptiveStatistics();
         ds.setWindowSize(windowSize);
@@ -67,10 +87,17 @@ public class Plotting {
         }
     }
 
+    /*
+     * create a window containing the graph
+     */
     public void createWindow(){
         createWindow("Graph");
     }
 
+    /*
+     * create a window containing the graph
+     * @param str the name of the graph
+     */
     public void createWindow(String str){
         JFreeChart chart = ChartFactory.createXYLineChart(str, null, null, dataset, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel chartPanel = new ChartPanel(chart);

@@ -19,7 +19,10 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         head = null;
     }
 
-
+    /*
+     * Insert into the tree
+     * @param data The information added into the tree
+     */
     public void insert(E data) {
         RBNode<E> newNode = new RBNode<>(data);
         newNode.setBlack(false); // nodes start as red
@@ -27,6 +30,7 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         head = bstInsert(head, newNode);
         fixInsert(newNode);
     }
+
 
     private RBNode<E> bstInsert(RBNode<E> root, RBNode<E> node) {
         if (root == null)
@@ -44,11 +48,21 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         return root;
     }
 
+    /*
+     * Check if a value is contained in the tree
+     * @param data The information to be found in a tree
+     * @returns boolean if the object is in the tree
+     */
     @Override
     public boolean contains(E data) {
         return get(data) != null;
     }
 
+    /*
+     * retrieve a data from the tree
+     * @param data The information fetched fom the tree
+     * @returns E the full data object
+     */
     @Override
     public E get(E data) {
         RBNode<E> current = head;
@@ -70,16 +84,22 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         return null;
     }
 
+    /*
+     * Empty all nodes in the tree
+     */
     @Override
     public void clear() {
-
+        head = null;
     }
 
+    /*
+     * Rebalance the tree after an insert
+     * @param node that was previously added to the tree
+     */
     private void fixInsert(RBNode<E> node) {
         while (node != head && node.getParentNode() != null && !node.getParentNode().isBlack()) {
             RBNode<E> parent = node.getParentNode();
             RBNode<E> grandparent = parent.getParentNode();
-
             if(grandparent == null)
                 break;
 
@@ -125,6 +145,10 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         head.setBlack(true);
     }
 
+    /*
+     * rotate the node to the left
+     * @param node The node to rotate.
+     */
     private void rotateLeft(RBNode<E> node) {
         RBNode<E> rightChild = node.getRightNode();
         node.setRightNode(rightChild.getLeftNode());
@@ -145,6 +169,10 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         node.setParentNode(rightChild);
     }
 
+    /*
+     * rotate the node to the right
+     * @param node The node to rotate.
+     */
     private void rotateRight(RBNode<E> node) {
         RBNode<E> leftChild = node.getLeftNode();
         node.setLeftNode(leftChild.getRightNode());
@@ -166,12 +194,20 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         node.setParentNode(leftChild);
     }
 
+    /*
+     * turn the tree into a list of nodes
+     */
     public ArrayList<RBNode<E>> nodesToArrayList() {
         ArrayList<RBNode<E>> nodes = new ArrayList<>(); // Create a dynamic list to hold the nodes
         collectNodes(nodes, head); // Perform in-order traversal and populate the list
         return nodes;
     }
 
+    /*
+     * recursive function that collects all nodes in a tree
+     * @param nodes the current array list of nodes
+     * @param node the current node
+     */
     private void collectNodes(ArrayList<RBNode<E>> nodes, RBNode<E> node) {
         if (node == null)
             return;
@@ -180,6 +216,10 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         collectNodes(nodes, node.getRightNode());
     }
 
+    /*
+     * insert data or update if it already exists
+     * @param data the data to be added to the tree
+     */
     public void insertOrUpdate(E data) {
         RBNode<E> newNode = new RBNode<>(data);
         newNode.setBlack(false); // New nodes are red initially
@@ -187,6 +227,7 @@ public class RBTree<E extends Comparable<E>> implements Tree<E> {
         head = bstInsertOrUpdate(head, newNode);
         fixInsert(newNode);
     }
+
 
     private RBNode<E> bstInsertOrUpdate(RBNode<E> root, RBNode<E> node) {
         if (root == null) {

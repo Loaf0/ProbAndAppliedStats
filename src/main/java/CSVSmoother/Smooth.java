@@ -23,6 +23,10 @@ public class Smooth {
         sb.append("X Value, Y Value\n");
     }
 
+    /*
+     * reads a file into an arraylist of vectors
+     * @param path the location of the csv
+     */
     public void readFile(String path) throws FileNotFoundException {
         CSVReader csv = new CSVReader();
         csv.readFile(path);
@@ -34,6 +38,10 @@ public class Smooth {
         }
     }
 
+    /*
+     * Smooth the data to make the data more readable
+     * @param windowSize the amount of neighbors that effect the average
+     */
     public void smoothData(int windowSize){
         // for each point
         for (int i = 0; i < points.size(); i++) {
@@ -57,6 +65,10 @@ public class Smooth {
         }
     }
 
+    /*
+     * Export the data to a file
+     * @param path the location of the csv
+     */
     public void exportData(String path) throws FileNotFoundException {
         for (Vector point : points) {
             sb.append(point.getX()).append(", ").append(point.getY()).append("\n");

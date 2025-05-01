@@ -19,6 +19,11 @@ public class Salt{
         sb.append("X Value, Y Value\n");
     }
 
+    /*
+     * recursive function that collects all nodes in a tree
+     * @param path the location of the csv
+     * @param randomRange the range of values to be salted
+     */
     public void saltDataFromCSV(String path, double randomRange) throws FileNotFoundException {
         CSVReader csv = new CSVReader();
         csv.readFile(path);
@@ -35,6 +40,10 @@ public class Salt{
         }
     }
 
+    /*
+     * export the data to a csv
+     * @param path the location for the exported file
+     */
     public void exportSaltedData(String path) throws FileNotFoundException {
         new FileWriter().write(path, sb.toString());
     }

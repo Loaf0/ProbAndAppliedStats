@@ -34,7 +34,7 @@ public class StatsLibrary {
         }
 
         double[] output = new double[tiedModes.size()];
-        for(int i = 0; i < tiedModes.size(); i++){
+        for (int i = 0; i < tiedModes.size(); i++) {
             output[i] = tiedModes.get(i);
         }
 
@@ -60,7 +60,7 @@ public class StatsLibrary {
         return total / input.length;
     }
 
-    public double varience(double[] input){
+    public double varience(double[] input) {
         if (input.length <= 1) // Handle 1 and 0
             return 0;
 
@@ -106,53 +106,61 @@ public class StatsLibrary {
         return Math.sqrt(variance);
     }
 
-    public double factorial(int x){
+    public double factorial(int x) {
         double output = x;
-        for(int i = x-1; i > 0; i--){
+        for (int i = x - 1; i > 0; i--) {
             output *= i;
         }
         return output;
     }
 
-    public BigInteger bigFactorial(int x){
+    public BigInteger bigFactorial(int x) {
         BigInteger output = BigInteger.valueOf(x);
-        for(int i = x-1; i > 0; i--){
+        for (int i = x - 1; i > 0; i--) {
             output = output.multiply(BigInteger.valueOf(i));
         }
         return output;
     }
 
-    public BigInteger combination(int n, int r){
+    public BigInteger combination(int n, int r) {
         BigInteger num = bigFactorial(n);
-        BigInteger den = bigFactorial(r).multiply(bigFactorial(n-r));
+        BigInteger den = bigFactorial(r).multiply(bigFactorial(n - r));
         return num.divide(den);
     }
 
-    public BigInteger permutation(int n, int r){
+    public BigInteger permutation(int n, int r) {
         BigInteger num = bigFactorial(n);
-        BigInteger den = bigFactorial(n-r);
+        BigInteger den = bigFactorial(n - r);
         return num.divide(den);
     }
 
-    public double binomialDistribution(int numOfTrials, int desiredAmount, double probOfSuccess){
+    public double binomialDistribution(int numOfTrials, int desiredAmount, double probOfSuccess) {
         return combination(numOfTrials, desiredAmount).intValue() * Math.pow(probOfSuccess, desiredAmount) * Math.pow(1 - probOfSuccess, numOfTrials - desiredAmount);
     }
 
-    public double geometricDistribution(double probOfSuccess, double iterations){
+    public double geometricDistribution(double probOfSuccess, double iterations) {
         return Math.pow(probOfSuccess, (iterations - 1)) * (1 - probOfSuccess);
     }
 
-    public double hypergeometricDistribution(int N, int n, int k, int x){
-        return combination(k, x).multiply(combination(N-k, n-x)).divide(combination(N,n)).doubleValue();
+    public double hypergeometricDistribution(int N, int n, int k, int x) {
+        return combination(k, x).multiply(combination(N - k, n - x)).divide(combination(N, n)).doubleValue();
     }
 
-    public double conditionalProbability(double probAB, double probA, double probB){
+    public double conditionalProbability(double probAB, double probA, double probB) {
         return probAB * probA / probB;
     }
 
-    public boolean checkIndependence(double probA, double probB, double probAAndB){
+    public boolean checkIndependence(double probA, double probB, double probAAndB) {
         double productOfProbabilities = probA * probB;
 
         return Math.abs(probAAndB - productOfProbabilities) < 0.000001; // about equal
+    }
+
+    public double poissonProbabilityDistribution(long x, double p) {
+        return Math.pow(p, x) * Math.pow(Math.E, -p) / factorial((int) x);
+    }
+
+    public double tchebysheffTheorem(double k){
+        return 1-(1/Math.pow(k,2));
     }
 }

@@ -5,7 +5,6 @@ package GenericTree;
  * @author Tyler Snyder
  */
 
-
 import java.util.ArrayList;
 
 public class SimpleTree<E extends Comparable<E>> implements Tree<E> {
@@ -23,6 +22,10 @@ public class SimpleTree<E extends Comparable<E>> implements Tree<E> {
         size = 0;
     }
 
+    /*
+     * Insert into the tree
+     * @param data The information added into the tree
+     */
     public void insert(E data){
         if(head == null){
             head = new Node<>(data);
@@ -55,10 +58,20 @@ public class SimpleTree<E extends Comparable<E>> implements Tree<E> {
         }
     }
 
+    /*
+     * Insert into the tree
+     * @param data The information to be found in the tree
+     * @returns boolean if the data is found in the tree
+     */
     public boolean contains(E data){
         return get(data) != null;
     }
 
+    /*
+     * Insert into the tree
+     * @param data The information to be found in the tree
+     * @returns E the object that contains the data
+     */
     public E get(E data) {
         if (head == null) {
             return null;
@@ -78,6 +91,10 @@ public class SimpleTree<E extends Comparable<E>> implements Tree<E> {
         return null;
     }
 
+    /*
+     * Insert into the tree or update data if it is in the tree
+     * @param data The information to be found in the tree
+     */
     public void insertOrUpdate(E data) {
         if (head == null) {
             head = new Node<>(data);
@@ -124,12 +141,20 @@ public class SimpleTree<E extends Comparable<E>> implements Tree<E> {
         this.head = head;
     }
 
+    /*
+     * turn the tree into a list of nodes
+     */
     public ArrayList<Node<E>> nodesToArrayList() {
         ArrayList<Node<E>> nodes = new ArrayList<>(); // Create a dynamic list to hold the nodes
         collectNodes(nodes, head); // Perform in-order traversal and populate the list
         return nodes;
     }
 
+    /*
+     * recursive function that collects all nodes in a tree
+     * @param nodes the current array list of nodes
+     * @param node the current node
+     */
     private void collectNodes(ArrayList<Node<E>> nodes, Node<E> node) {
         if (node == null)
             return;
@@ -138,6 +163,9 @@ public class SimpleTree<E extends Comparable<E>> implements Tree<E> {
         collectNodes(nodes, node.getRightNode());
     }
 
+    /*
+     * empty all nodes in the tree
+     */
     public void clear(){
         head = null;
         size = 0;

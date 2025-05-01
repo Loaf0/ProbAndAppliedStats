@@ -116,6 +116,7 @@ public class SimpleRBHashTreeMap<X extends Comparable<X>, Y> implements SimpleMa
 
         keys = new RBTree[newSize];
 
+        // start a parallel loop to migrate data to a larger hashmap
         Arrays.stream(oldKeys).parallel().filter(tree -> tree != null).forEach(tree -> {
             for (RBNode<KeyValuePair<X, Y>> kv : tree.nodesToArrayList()) {
                 int newHash = simpleHash(kv.getData().getKey(), newSize);
@@ -131,7 +132,7 @@ public class SimpleRBHashTreeMap<X extends Comparable<X>, Y> implements SimpleMa
     }
 
     /*
-     * Remove a key value pair from the map
+     * Remove a key value pair from the map (currently not implemented)
      * @param X the key to bed deleted
      * @return boolean to see key was deleted from map
      */
@@ -143,6 +144,9 @@ public class SimpleRBHashTreeMap<X extends Comparable<X>, Y> implements SimpleMa
         return keys;
     }
 
+    /*
+     * remove all nodes from the tree
+     */
     public void clear() {
         keys = new RBTree[50]; // Reset the array (or 0 size if you prefer)
         items = 0;

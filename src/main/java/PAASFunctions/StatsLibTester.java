@@ -22,6 +22,7 @@ public class StatsLibTester {
         System.out.println("     Conditional Probability : " + functions.conditionalProbability(.5, .5, .5));
         System.out.println("Hyper geometric distribution : " + functions.conditionalProbability(.5, .5, .5));
         System.out.println("                Independence : " + functions.checkIndependence(.5, .5, .25));
-
+        System.out.println("        Poisson Distribution : " + functions.poissonProbabilityDistribution(4, 6));
+        System.out.println("         Tchebysheff Theorem : " + functions.tchebysheffTheorem(2.0));
     }
 }
